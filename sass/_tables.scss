@@ -1,0 +1,21 @@
+	#showTable td{
+		text-align: center;
+		color: #3385ff;
+		font-size: 1.2em;
+		font-weight: bold;
+		font-style: italic;
+	}
+	
+	#showTable thead{
+		font-size: 1.2em;
+		text-align: center;
+	}
+	
+	table, td, td {
+   		border: 1px solid black;
+    	border-collapse: collapse;
+	}
+	
+	th, td {
+    	padding: 5px;
+	}

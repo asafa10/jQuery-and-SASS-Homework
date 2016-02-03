@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQury and SASS</title>
+<link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+	
+	<div>
+		<fieldset>
+			<legend><strong>Добавяне на нов автомобил</strong></legend>
+				<table style="width:100%" id="addTable">
+					<tr id="add">
+						<td  align="center" ><input id="addMark" type="text" placeholder="Марка" /></td>
+						<td  align="center"><input id="addModel" type="text" placeholder="Модел"/></td>
+						<td  align="center"><input size="29" id="addYear" type="text" placeholder="Година на производство(цяло число)"/></td>
+						<td  align="center"><input size="26" id="addKm" type="text" placeholder="Изминати километри(цяло число)"/></td>
+		
+					</tr>
+				</table>
+			
+				<button id="buttonAdd" class="btnAdd" style="float: right">Добави автомобил</button>
+				
+	   </fieldset>
+	</div>
+		
+	<div>
+		<fieldset>
+			<legend ><strong>Въведени автомобили</strong></legend>
+			<table style="width:100%" id="showTable" class="ofset">
+				<thead>
+					<tr>
+						<th>Номер</th>
+						<th>Марка</th>
+						<th>Модел</th>
+						<th>Година на прозводство</th>
+						<th>Километраж</th>
+						<th>Редактиране</th>
+					</tr>
+				</thead>
+				
+				<tbody>	
+				
+				</tbody>
+			</table>
+		</fieldset>
+	
+	</div>
+	
+	
+</body>
+<script src="libs/jquery-2.2.0.min.js"></script>
+<script>
+
+$(document).ready(function(){
+	// promeliva za red
+	var $i = 1;
+	 
+	//advane
+	$('#buttonAdd').on('click', function() {
+		
+		var number = $('#addMark').val();
+		var brand = $('#addMark').val();
+		var model = $('#addModel').val();
+		var year = $('#addYear').val();
+		var km = $('#addKm').val();
+
+		var newTableRow = ""
+		var errors = [];
+		newTableRow +="<tr> \
+					<td>" + $i + "</td> \
+					<td>" + brand + "</td> \
+					<td>" + model + "</td> \
+					<td>" + year + "</td>  \
+					<td>" + km + "</td>    \
+					<td>" + " <button></button> " + " <button></button> " + "</td> \
+				</tr>";	
+				
+			if( (!brand) && (!model) && (!year) && (!km) ){
+				errors.push("Всички полета са задължителни!");
+				alert(errors);
+			}
+			else if(!brand) {
+				errors.push("Марката е задължително поле!");
+				alert(errors);
+			} else if (!model) {
+				errors.push("Моделът е задължително поле!");
+				alert(errors);
+			} else if ( (!model) || (!(year.match(/^\d+$/))) ){
+				errors.push("Годината на производство е задължително поле(цяло число)!");
+				alert(errors);
+			} else if ((!km) || (!(km.match(/^\d+$/)))) {
+				errors.push("Изминати километри е задължително поле(цяло число)!");
+				alert(errors);
+			} else {
+				$(newTableRow).appendTo('#showTable tbody');
+			}
+			
+			if( errors.length == 0 ){
+				//nulirane sled advane
+				$i++;
+				$('#addMark').val("");
+				$('#addMark').val("");
+				$('#addModel').val("");
+				$('#addYear').val("");
+				$('#addKm').val("");
+			}	
+			
+			
+			
+		//for btn Edit	
+		$('#showTable tbody tr td button:first-child')
+			.addClass('btnEdit');
+		
+		$('#showTable tbody tr td button:first-child').on('click', function(){
+			$('#addMark').val(brand);
+			$('#addModel').val(model);
+			$('#addYear').val(year);
+			$('#addKm').val(km);
+			$(this).closest('tr').remove();
+		});
+		
+		//for btn Delete
+		$('#showTable tbody tr td button:last-child')
+			.addClass('btnDelete');
+		
+		$('#showTable tbody tr td button:last-child').on('click', function(){
+			$(this).closest('tr').remove();
+		});
+		
+	});
+	
+});
+	
+</script>
+</html>

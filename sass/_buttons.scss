@@ -1,0 +1,27 @@
+	.btnAdd {
+		font-style: oblique;
+		font-size: 0.9em;
+		font-weight: bold;
+		height: 35px;
+		margin-top: 1em;
+		border-radius: 8px;
+		background-color: #ffc966;	
+		color: green;
+	}
+	
+	.btnEdit {
+		background-image: url(pics/edit.png);
+		background-repeat: no-repeat;
+		width: 35px;
+		height: 35px;
+		border: 2px outset;
+		margin-right: 15px;
+	}
+	
+	.btnDelete {
+		background-image: url(pics/delete.png);
+		background-repeat: no-repeat;
+		width: 35px;
+		height: 35px;
+		border: 2px outset;
+	}
